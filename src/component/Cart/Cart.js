@@ -1,13 +1,16 @@
-import React from 'react';
+import React  from 'react';
+//import { useAuth } from '../login/Use-auth';
 
 const Cart = (props) => {
     const cart = props.cart;
-    const total = cart.reduce((total,Prd) => total+Prd.price,0);
-    // let total = 0;
-    // for(let i=0;i<cart.length;i++){
-    //     const product = cart[i];
-    //     total = total+product.price;// reduce functions detail form
-    // }
+    //const auth = useAuth();
+    //console.log(auth.user);
+    // const total = cart.reduce((total,Prd) => total+Prd.price,0);
+    let total = 0;
+    for(let i=0;i<cart.length;i++){
+        const product = cart[i];
+        total = total + product.price*product.quantity;// reduce functions detail form
+    }
     let shipping = 0;
     if(total>100){
         shipping = 0;
@@ -34,6 +37,9 @@ const Cart = (props) => {
             <p>Shipping Cost: {formatNumber(shipping)}</p>
             <p>Tax Cost : {formatNumber(tax)} </p> 
             <p> Total Price : {formatNumber(total+shipping+tax)}</p>
+            
+           
+            
         </div>
     );
 };
